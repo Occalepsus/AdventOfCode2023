@@ -1,0 +1,3 @@
+[submodule "Solutions/AdventOfCode2023"]
+	path = Solutions/AdventOfCode2023
+	url = git@github.com:club-code/AdventOfCode2023.git
