@@ -140,16 +140,19 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="src\Day1.cpp" />
     <ClCompile Include="src\DayClassTemplate\DayT.cpp" />
+    <ClCompile Include="src\Day2.cpp" />
     <ClCompile Include="util\inputReader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Day1.h" />
     <ClInclude Include="src\DayClassTemplate\DayT.h" />
+    <ClInclude Include="src\Day2.h" />
     <ClInclude Include="util\DayInterface.h" />
     <ClInclude Include="util\inputReader.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="input\InputDay1.txt" />
+    <Text Include="input\InputDay2.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
