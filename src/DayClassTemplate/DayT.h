@@ -11,6 +11,6 @@ public:
 	int run() override;
 
 private:
-	int part1(std::vector<std::string> const& input) const;
-	int part2(std::vector<std::string> const& input) const;
+	int part1(std::vector<std::string> const& input);
+	int part2(std::vector<std::string> const& input);
 };

@@ -6,13 +6,13 @@ int DayT::run() {
 	return part1(input);
 }
 
-int DayT::part1(std::vector<std::string> const& input) const {
+int DayT::part1(std::vector<std::string> const& input) {
 	int res = 0;
 
 	return res;
 }
 
-int DayT::part2(std::vector<std::string> const& input) const {
+int DayT::part2(std::vector<std::string> const& input) {
 	int res = 0;
 
 	return res;

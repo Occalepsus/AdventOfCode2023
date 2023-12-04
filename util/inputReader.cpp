@@ -4,7 +4,7 @@
 #include <sstream>
 #include <array>
 
-#include <curl/curl.h>
+//#include <curl/curl.h>
 
 constexpr size_t MAX_LINE_SIZE = 256;
 
@@ -25,32 +25,32 @@ std::vector<std::string> readInputFromFile(std::string const& path) {
     return res;
 }
 
-std::vector<std::string> readInputFromURL(std::string const& url) {
-	CURL* curl;
-	CURLcode res;
-    std::istringstream readBuffer;
-
-    curl = curl_easy_init();
-	curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
-    curl_easy_setopt(curl, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
-    curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
-    curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
-
-    if (curl) {
-		res = curl_easy_perform(curl);
-        if (res != CURLE_OK) {
-			std::cerr << "Could not open the file " << url << std::endl;
-			throw std::invalid_argument("Could not open the file " + url);
-		}
-		curl_easy_cleanup(curl);
-	}
-	std::cout << "File successfully read.\n";
-
-    std::vector<std::string> input;
-
-    for (std::array<char, MAX_LINE_SIZE> a; readBuffer.getline(&a[0], MAX_LINE_SIZE);) {
-        input.emplace_back(&a[0]);
-    }
-
-	return input;
-}
+//std::vector<std::string> readInputFromURL(std::string const& url) {
+//	CURL* curl;
+//	CURLcode res;
+//    std::istringstream readBuffer;
+//
+//    curl = curl_easy_init();
+//	curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+//    curl_easy_setopt(curl, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
+//    curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+//    curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
+//
+//    if (curl) {
+//		res = curl_easy_perform(curl);
+//        if (res != CURLE_OK) {
+//			std::cerr << "Could not open the file " << url << std::endl;
+//			throw std::invalid_argument("Could not open the file " + url);
+//		}
+//		curl_easy_cleanup(curl);
+//	}
+//	std::cout << "File successfully read.\n";
+//
+//    std::vector<std::string> input;
+//
+//    for (std::array<char, MAX_LINE_SIZE> a; readBuffer.getline(&a[0], MAX_LINE_SIZE);) {
+//        input.emplace_back(&a[0]);
+//    }
+//
+//	return input;
+//}
