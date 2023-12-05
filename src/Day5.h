@@ -17,6 +17,8 @@ private:
 		long long start;
 		long long end;
 		SeedRange(long long start, long long end) : start(start), end(end) {};
+		SeedRange(SeedRange const& other) = default;
+		~SeedRange() = default;
 	};
 
 	std::vector<SeedRange> seeds;
@@ -43,7 +45,8 @@ private:
 		RangeMap{6}
 	};
 
-	long long part1(std::vector<std::string> const& input) const;
-	long long part2(std::vector<std::string> const& input) const;
+	long long part1() const;
+	long long part2() const;
+	std::vector<Day5::SeedRange> checkSeedRange(SeedRange& seedRange, RangeMap const& ranges) const;
 	void parseInput(std::vector<std::string> const& input, bool part1 = true);
 };

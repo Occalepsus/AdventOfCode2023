@@ -5,16 +5,16 @@
 long long Day5::run() {
 	auto input = readInputFromFile(getDayInputPath());
 
-	parseInput(input);
+	parseInput(input, false);
 
-	return part1(input);
+	return part2();
 }
 
-long long Day5::part1(std::vector<std::string> const& input) const {
+long long Day5::part1() const {
 	// Since we want the minimum value, we start from the maximum value
 	long long res{ std::numeric_limits<long long>::max() };
 
-	for (auto seed : seeds) {
+	for (auto const& seed : seeds) {
 		long long value{ seed.start };
 		std::cout << "Seed: " << value;
 		for (auto const& map : almanac) {
@@ -39,11 +39,93 @@ long long Day5::part1(std::vector<std::string> const& input) const {
 	return res;
 }
 
-long long Day5::part2(std::vector<std::string> const& input) const {
-	int res = 0;
+long long Day5::part2() const {
+	// Since we want the minimum value, we start from the maximum value
+	long long res{ std::numeric_limits<long long>::max() };
+
+	for (auto const& seed : seeds) {
+		std::vector<SeedRange> seedRanges{ seed };
+		for (auto const& map : almanac) {
+			std::vector<SeedRange> seedRangesToAdd;
+			for (auto& seedRange : seedRanges) {
+				auto newRanges{ checkSeedRange(seedRange, map) };
+				seedRangesToAdd.insert(seedRangesToAdd.begin(), newRanges.begin(), newRanges.end());
+			}
+			seedRanges.insert(seedRanges.end(), seedRangesToAdd.begin(), seedRangesToAdd.end());
+		}
+
+		for (auto const& seedRange : seedRanges) {
+			std::cout << "Seed range from " << seedRange.start << " to " << seedRange.end;
+			if (seedRange.start < res) {
+				std::cout << " (new min)";
+				res = seedRange.start;
+			}
+			std::cout << "\n";
+		}
+	}
 
 	return res;
 }
+
+
+std::vector<Day5::SeedRange> Day5::checkSeedRange(SeedRange& seed, RangeMap const& ranges) const {
+	std::vector<Day5::SeedRange> res;
+
+	for (auto const& range : ranges.ranges) {
+		// Case 1: Everything before		|--| x-----x
+		if (seed.end < range.src) {
+			// Nothing to do
+			continue;
+		}
+
+		// Case 2: Everything after				 x-----x |--|
+		else if (seed.start >= range.src + range.size) {
+			// Nothing to do
+			continue;
+		}
+
+		// Case 3: Overlap start			|----x--|--x
+		else if (seed.start < range.src && seed.end < range.src + range.size) {
+			// We create a new seed range, which has been well placed
+			res.emplace_back(range.dest, seed.end - range.src + range.dest);
+			seed.end = range.src;
+			continue;
+		}
+
+		// Case 4: Contained and bigger		|----x-----x----|
+		else if (seed.start < range.src && seed.end >= range.src + range.size) {
+			// We create a new seed range, which has been well placed
+			res.emplace_back(range.dest, range.size + range.dest);
+
+			// Compute the end of the seed range (not really good, but I don't know how to do better)
+			SeedRange endSeed{ range.src + range.size, seed.end };
+			auto endRes{ checkSeedRange(endSeed, ranges) };
+			res.insert(res.end(), endRes.begin(), endRes.end());
+			res.emplace_back(endSeed);
+
+			seed.end = range.src;
+			continue;
+		}
+
+		// Case 5: Contained and smaller		 x-|-|-x
+		else if (seed.start >= range.src && seed.end < range.src + range.size) {
+			// We change the seed range, which is now well placed, so we return
+			seed.start += range.dest - range.src;
+			seed.end += range.dest - range.src;
+			return res;
+		}
+
+		// Case 6: Overlap end					 x--|--x----|
+		else if (seed.start >= range.src && seed.end >= range.src + range.size) {
+			// We create a new seed range, which has been well placed
+			res.emplace_back(seed.start - range.src + range.dest, range.dest + range.size);
+			seed.start = range.src + range.size;
+			continue;
+		}
+	}
+	return res;
+}
+
 
 void Day5::parseInput(std::vector<std::string> const& input, bool part1) {
 	int id{ -1 };
