@@ -8,13 +8,13 @@ day_t DayT::run() {
 }
 
 day_t DayT::part1() {
-	int res = 0;
+	day_t res{ 0 };
 
 	return res;
 }
 
 day_t DayT::part2() {
-	int res = 0;
+	day_t res{ 0 };
 
 	return res;
 }
