@@ -2,7 +2,7 @@
 
 #include "util/DayInterface.h"
 
-using day_t = int;
+using day_t = size_t;
 
 class Day8 : public DayInterface<day_t>
 {
@@ -25,7 +25,10 @@ private:
 	};
 
 	std::vector<std::unique_ptr<Node>> nodes;
+
 	Node* startingNode{ nullptr };
+	std::vector<Node*> startingNodes;
+
 	Node* endingNode{ nullptr };
 
 	day_t part1();

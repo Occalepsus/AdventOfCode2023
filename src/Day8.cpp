@@ -6,7 +6,7 @@ day_t Day8::run() {
 	auto input = readInputFromFile(getDayInputPath());
 	parseInput(input);
 
-	return part1();
+	return part2();
 }
 
 day_t Day8::part1() {
@@ -28,9 +28,35 @@ day_t Day8::part1() {
 }
 
 day_t Day8::part2() {
-	day_t res = 0;
+	day_t iterations{ 0 };
 
-	return res;
+	std::vector<Node*> currentNodes{ startingNodes };
+	currentNodes.shrink_to_fit();
+	for (;; iterations++) {
+		bool allEndings{ true };
+		bool right{ dir[iterations % dir.size()] };
+		for (auto& node : currentNodes) {
+			//std::cout << node->label << " -> ";
+
+			if (right) {
+				node = node->right;
+			}
+			else {
+				node = node->left;
+			}
+
+			//std::cout << node->label;
+
+			allEndings &= node->label[2] == 'Z';
+
+			//std::cout << " | ";
+		}
+		//std::cout << '\n';
+
+		if (allEndings) {
+			return iterations + 1;
+		}
+	}
 }
 
 void Day8::parseInput(std::vector<std::string> const& input) {
@@ -56,6 +82,10 @@ void Day8::parseInput(std::vector<std::string> const& input) {
 
 		int id{ getIdx(it->substr(0, 3)) };
 		(*tmpNodes)[id] = nodes.back().get();
+
+		if ((*it)[2] == 'A') {
+			startingNodes.emplace_back(nodes.back().get());
+		}
 	}
 
 	// Link the nodes
