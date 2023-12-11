@@ -4,7 +4,7 @@
 
 #include <array>
 
-using day_t = size_t;
+using day_t = long long;
 
 class Day7 : public DayInterface<day_t>
 {

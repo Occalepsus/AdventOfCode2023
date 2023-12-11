@@ -13,7 +13,7 @@ day_t Day7::part1() const {
 	day_t res{ 0 };
 
 	for (auto const& hand : hands) {
-		std::cout << "Hand " << hand.rawCards << " is " << (int)hand.level << " and bid " << hand.bid << " * " << hand.rank << " = " << hand.bid * hand.rank << std::endl;
+		std::cout << "Hand " << hand.rawCards << " is " << (int)hand.level << " and bid " << hand.rank << " * " << hand.bid << " = " << hand.bid * hand.rank << std::endl;
 
 		res += hand.rank * hand.bid;
 	}
@@ -60,7 +60,7 @@ void Day7::parseInput(std::vector<std::string> const& input) {
 
 		hands.emplace_back(cards, line.substr(0, 5), std::stoi(line.substr(6, line.size() - 6)), 0);
 	}
-	hands.shrink_to_fit();
+	//hands.shrink_to_fit();
 	std::sort(hands.begin(), hands.end(), [](Hand const& a, Hand const& b) { return a.compareHands(b); });
 
 	size_t i{ 0 };
@@ -88,7 +88,12 @@ Day7::Hand::Hand(std::array<int, 5> const& cards, std::string const& rawCards, d
 			level = CardLevel::FourOfAKind;
 			return;
 		case 3:
-			level = CardLevel::ThreeOfAKind;
+			if (level == CardLevel::OnePair) {
+				level = CardLevel::FullHouse;
+			}
+			else {
+				level = CardLevel::ThreeOfAKind;
+			}
 			break;
 		case 2:
 			level = (CardLevel)((int)level + 1);
