@@ -54,6 +54,15 @@
     <ClCompile Include="src\Day10.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="src\Day11.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Day12.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Day13.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Day1.h">
@@ -95,6 +104,15 @@
     <ClInclude Include="src\Day10.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="src\Day11.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Day12.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Day13.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="input\InputDay1.txt">
@@ -124,6 +142,15 @@
     <Text Include="input\InputDay9.txt">
       <Filter>Fichiers de ressources</Filter>
     </Text>
-    <Text Include="input\InputDay10.txt" />
+    <Text Include="input\InputDay10.txt">
+      <Filter>Fichiers de ressources</Filter>
+    </Text>
+    <Text Include="input\InputDay11.txt">
+      <Filter>Fichiers de ressources</Filter>
+    </Text>
+    <Text Include="input\InputDay12.txt">
+      <Filter>Fichiers de ressources</Filter>
+    </Text>
+    <Text Include="input\InputDay13.txt" />
   </ItemGroup>
 </Project>
