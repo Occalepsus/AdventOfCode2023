@@ -152,6 +152,9 @@
     <ClCompile Include="src\Day11.cpp" />
     <ClCompile Include="src\Day12.cpp" />
     <ClCompile Include="src\Day13.cpp" />
+    <ClCompile Include="src\Day14.cpp" />
+    <ClCompile Include="src\Day15.cpp" />
+    <ClCompile Include="src\Day16.cpp" />
     <ClCompile Include="util\inputReader.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -169,6 +172,9 @@
     <ClInclude Include="src\Day11.h" />
     <ClInclude Include="src\Day12.h" />
     <ClInclude Include="src\Day13.h" />
+    <ClInclude Include="src\Day14.h" />
+    <ClInclude Include="src\Day15.h" />
+    <ClInclude Include="src\Day16.h" />
     <ClInclude Include="util\DayInterface.h" />
     <ClInclude Include="util\inputReader.h" />
   </ItemGroup>
@@ -178,6 +184,9 @@
     <Text Include="input\InputDay11.txt" />
     <Text Include="input\InputDay12.txt" />
     <Text Include="input\InputDay13.txt" />
+    <Text Include="input\InputDay14.txt" />
+    <Text Include="input\InputDay15.txt" />
+    <Text Include="input\InputDay16.txt" />
     <Text Include="input\InputDay2.txt" />
     <Text Include="input\InputDay3.txt" />
     <Text Include="input\InputDay4.txt" />

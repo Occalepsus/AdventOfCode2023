@@ -1,10 +1,10 @@
 #include <iostream>
 #include <string>
 
-#include "src/Day13.h"
+#include "src/Day16.h"
 
 int main() {
-	Day13 day;
+	Day16 day;
 	auto res = day.run();
 	std::cout << "\nResult: " << res << "\n";
 }
